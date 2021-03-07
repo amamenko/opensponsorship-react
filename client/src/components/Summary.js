@@ -75,6 +75,8 @@ const Summary = (props) => {
         profileImage: profileImageCompressedString,
       },
     }).then((res) => {
+      console.log(res);
+
       if (res.data) {
         if (!successfulProfileCreation) {
           changeSuccessfulProfileCreation(true);
