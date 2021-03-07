@@ -178,6 +178,7 @@ const Profiles = (props) => {
           : "http://localhost:4000/api/read",
     })
       .then((res) => {
+        console.log(res);
         changeAllProfiles(res.data);
         changeDataLoading(false);
       })

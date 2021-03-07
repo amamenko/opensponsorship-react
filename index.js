@@ -16,7 +16,6 @@ app.use(
       process.env.NODE_ENV === "production"
         ? process.env.PRODUCTION_CLIENT_URL
         : "http://localhost:3000",
-    credentials: true,
   })
 );
 
@@ -27,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
@@ -52,7 +51,7 @@ app.get("/api/read", (req, res) => {
       console.log(err);
     }
     console.log(athletes);
-    res.send(athletes);
+    res.json({ athletes });
   });
 });
 
