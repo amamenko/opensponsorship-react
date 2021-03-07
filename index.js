@@ -22,14 +22,6 @@ app.use(
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
-
 app.post("/api/create", (req, res) => {
   const newAthlete = new Athlete({
     _id: new mongoose.Types.ObjectId(),
@@ -50,7 +42,6 @@ app.get("/api/read", (req, res) => {
     if (err) {
       console.log(err);
     }
-    console.log(athletes);
     res.json({ athletes });
   });
 });
@@ -73,6 +64,14 @@ app.put("/api/update", (req, res) => {
     }
   );
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 // Connect to MongoDB with Mongoose
 mongoose
