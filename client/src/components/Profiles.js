@@ -206,7 +206,7 @@ const Profiles = (props) => {
           size={150}
         />
       ) : allProfiles ? (
-        allProfiles.length > 0 ? (
+        Array.isArray(allProfiles) && allProfiles.length > 0 ? (
           allProfiles.map((profile) => {
             let imageBlob;
 
