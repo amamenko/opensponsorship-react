@@ -42,7 +42,7 @@ app.get("/api/read", (req, res) => {
     if (err) {
       console.log(err);
     }
-    res.json({ athletes });
+    res.json(athletes);
   });
 });
 
